@@ -16,7 +16,7 @@ ec2_instances = {
     vm_name        = "app-ec2"
     instance_type  = "t2.micro"
     subnet_key     = "public"
-    key_path       = "/Users/kaberiagarwala/.ssh/my-ec2-key"
+    key_path       = "/Users/kaberiagarwala/.ssh/my-ec2-key.pub"
     is_public      = true
 
     ingress_rules = [
@@ -40,7 +40,7 @@ ec2_instances = {
     vm_name        = "db-ec2"
     instance_type  = "t2.micro"
     subnet_key     = "private"
-    key_path       = "/Users/kaberiagarwala/.ssh/my-ec2-key"
+    key_path       = "/Users/kaberiagarwala/.ssh/my-ec2-key.pub"
     is_public      = false
 
     ingress_rules = [
@@ -61,3 +61,9 @@ ec2_instances = {
   }
 }
 
+
+common_tags = {
+    Project = "Travel Memory Automation & Monitoring"
+    ManagedBy = "Terraform"
+    Owner = "Kaveri"
+}
