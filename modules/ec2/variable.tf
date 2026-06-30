@@ -1,24 +1,39 @@
 variable "instance_type"{
     type = string
-    default = "value"
 }
 
 variable "subnet_id" {
     type = string
-    default = "value"
-}
-
-variable "server_name" {
-    type = string
-    default = "value"
 }
 
 variable "key_path" {
     type = string
-    default = "value"
 }   
 
-variable "security_group_id" {
+variable "vpc_id" {
     type = string
-    default = "value"
 }
+
+variable "vm_name" {
+    type = string
+}   
+
+variable "is_public" {
+    type = bool
+}
+
+variable "ingress_rules" { 
+    description = "List of ingress rules" 
+    type = list(object({ 
+        port = number 
+        description = string 
+        cidr_blocks = list(string) })) 
+        } 
+        
+variable "egress_rules" { 
+    description = "List of egress rules" 
+    type = list(object({ 
+        port = number 
+        description = string 
+        cidr_blocks = list(string) })) 
+        }

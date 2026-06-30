@@ -3,7 +3,7 @@ resource "aws_security_group" "ec2" {
   vpc_id      = var.vpc_id
 
   tags = {
-    Name = "allow_tls"
+    Name = "Securty group"
   }
 
   dynamic "ingress" {
@@ -35,8 +35,8 @@ resource "aws_instance" "example" {
     instance_type = var.instance_type
     subnet_id     = var.subnet_id
     key_name      = aws_key_pair.deployer.key_name
-    vpc_security_group_ids = aws_security_group.ec2.id
-
+    vpc_security_group_ids = [ aws_security_group.ec2.id ]
+    associate_public_ip_address = var.is_public
     tags = {
         Name = "${var.vm_name}-ec2"
     }
@@ -45,6 +45,6 @@ resource "aws_instance" "example" {
 }
 
 resource "aws_key_pair" "deployer" {
-  key_name   = "${var.server_name}-key"
-  public_key = "file(${var.key_path})"
+  key_name   = "${var.vm_name}-key"
+  public_key = file(var.key_path)
 }
